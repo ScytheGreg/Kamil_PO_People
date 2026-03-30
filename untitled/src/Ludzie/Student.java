@@ -13,4 +13,5 @@ public class Student {
     public String imie(){ return imie; }
     public String nazwisko(){ return nazwisko; }
     public String nr_indeksu(){ return nr_indeksu; }
+    public String przedstaw_sie() { return imie + " " + nazwisko + " " + nr_indeksu; }
 }

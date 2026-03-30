@@ -10,4 +10,5 @@ public class Osoba{
     }
     public String imie(){ return imie; }
     public String nazwisko(){ return nazwisko; }
+    public String przedstaw_sie() { return imie + " " + nazwisko; }
 }

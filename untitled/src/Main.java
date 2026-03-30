@@ -8,4 +8,8 @@ public class Main {
         array[0] = new Osoba("James", "Bond");
         array[1] = new Osoba("Jan","Kmicic");
     }
+
+//     for (int i = 0; i <= 4; i++) {
+//        array[i].przedstaw_sie();
+//    }
 }

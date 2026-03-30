@@ -13,4 +13,5 @@ public class Agent {
     public String imie(){ return imie; }
     public String nazwisko(){ return nazwisko; }
     public String drugie_nazwisko(){ return drugie_nazwisko; }
+    public String przedstaw_sie() { return drugie_nazwisko + ", " + imie + " " + nazwisko; }
 }
