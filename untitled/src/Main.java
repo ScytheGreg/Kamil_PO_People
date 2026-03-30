@@ -4,8 +4,8 @@ import Ludzie.Student;
 
 public class Main {
     public static void main(String[] args) {
-        Osoba[] table = new Osoba[0];
-        table[0] = new Osoba("James", "Bond");
-        table[1] = new Osoba("Jan","Kmicic");
+        Osoba[] array = new Osoba[0];
+        array[0] = new Osoba("James", "Bond");
+        array[1] = new Osoba("Jan","Kmicic");
     }
 }
