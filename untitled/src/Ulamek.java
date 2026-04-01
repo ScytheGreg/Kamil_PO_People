@@ -6,14 +6,21 @@ public class Ulamek {
         this.licznik = licznik;
         this.mianownik = mianownik;
 
-        int nwd = nwd();
+        if (mianownik == 0) {
+            throw new IllegalArgumentException("Dzielenie przez zero");
+        }
+
+        if (mianownik < 0) {
+            licznik = -licznik;
+            mianownik = -mianownik;
+        }
+
+        int nwd = nwd(Math.abs(licznik), mianownik);
         this.licznik = licznik / nwd;
         this.mianownik = mianownik / nwd;
     }
 
-    public int nwd() {
-        int a = this.licznik;
-        int b = this.mianownik;
+    private static int nwd(int a, int b) {
         int c;
         while(b != 0) {
             c = a % b;
@@ -23,51 +30,46 @@ public class Ulamek {
         return a;
     }
 
-    public Ulamek add(Ulamek a, Ulamek b) {
-        this.licznik = a.licznik * b.mianownik + a.mianownik * b.licznik;
-        this.mianownik = a.mianownik * b.mianownik;
-
-        int nwd = nwd();
-        this.licznik = licznik / nwd;
-        this.mianownik = mianownik / nwd;
-
-        return this;
+    public Ulamek add(Ulamek other) {
+        int nowy_licznik = this.licznik * other.mianownik + this.mianownik * other.licznik;
+        int nowy_mianownik = this.mianownik * other.mianownik;
+        return new Ulamek(nowy_licznik, nowy_mianownik);
     }
 
-    public Ulamek subtract(Ulamek a, Ulamek b) {
-        this.licznik = a.licznik * b.mianownik - a.mianownik * b.licznik;
-        this.mianownik = a.mianownik * b.mianownik;
-
-        int nwd = nwd();
-        this.licznik = licznik / nwd;
-        this.mianownik = mianownik / nwd;
-
-        return this;
+    public Ulamek add(int a) {
+        int nowyLicznik = this.licznik + (a * this.mianownik);
+        return new Ulamek(nowyLicznik, this.mianownik);
     }
 
-    public Ulamek multiply(Ulamek a, Ulamek b) {
-        this.licznik = a.licznik * b.licznik;
-        this.mianownik = a.mianownik * b.mianownik;
-
-        int nwd = nwd();
-        this.licznik = licznik / nwd;
-        this.mianownik = mianownik / nwd;
-
-        return this;
+    public Ulamek subtract(Ulamek other) {
+        int nowy_licznik = this.licznik * other.mianownik - this.mianownik * other.licznik;
+        int nowy_mianownik = this.mianownik * other.mianownik;
+        return new Ulamek(nowy_licznik, nowy_mianownik);
     }
 
-    public Ulamek divide(Ulamek a, Ulamek b) {
-        this.licznik = a.licznik * b.mianownik;
-        this.mianownik = a.mianownik * b.licznik;
+    public Ulamek multiply(Ulamek other) {
+        return new Ulamek(this.licznik * other.licznik, this.mianownik * other.mianownik);
+    }
 
-        int nwd = nwd();
-        this.licznik = licznik / nwd;
-        this.mianownik = mianownik / nwd;
+    public Ulamek divide(Ulamek other) {
+        if (other.licznik == 0) {
+            throw new ArithmeticException("Dzielenie przez zero");
+        }
+        return new Ulamek(this.licznik * other.mianownik, this.mianownik * other.licznik);
+    }
 
-        return this;
+    @Override
+    public String toString() {
+        if (mianownik == 1) {
+            return "" + licznik;
+        } else if (licznik == 0) {
+            return "0";
+        } else {
+            return licznik + "/" + mianownik;
+        }
     }
 
     public void wypisz() {
-
+        System.out.println(this.toString());
     }
 }
